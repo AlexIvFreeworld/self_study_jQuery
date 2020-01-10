@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор элементов часть 2</title>
+    <style>
+        form {
+            border: 2px green solid;
+            padding: 2px;
+            margin: 0;
+            background: #efe;
+        }
+
+       form > div {
+            color: red;
+        }
+
+        fieldset {
+            margin: 1px;
+            padding: 3px;
+        }
+
+        .block {
+            width: 150px;
+            height: 30px;
+            border: 1px solid grey;
+        }
+        .test{ border: 3px inset #f00; }
+        table.tab_2 td{ background-color:#393; }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div>Форма заключена в зеленую рамку</div>
+        <label>Ребенок:</label>
+        <input type="text" name="name" />
+        <fieldset>
+            <label>Внук:</label>
+            <input type="text" name="newsletter" />
+        </fieldset>
+    </form>
+    Сестринский элемент по отношению к форме:
+    <input type="text" name="none" />
+    <fieldset>
+        <input type="text" name="email" />
+    </fieldset>
+
+    <div class="block div_1"></div>
+    <div class="block div_2"></div>
+    <div class="block div_3"></div>
+    <div class="block div_4"></div>
+    <div class="block div_5"></div>
+    <table class="tab_0">
+        <tr>
+            <td>1-1</td>
+            <td>1-2</td>
+            <td>1-3</td>
+            <td>1-4</td>
+        </tr>
+        <tr>
+            <td>2-1</td>
+            <td>2-2</td>
+            <td>2-3</td>
+            <td>2-4</td>
+        </tr>
+        <tr>
+            <td>3-1</td>
+            <td>3-2</td>
+            <td>3-3</td>
+            <td>3-4</td>
+        </tr>
+        <tr>
+            <td>4-1</td>
+            <td>4-2</td>
+            <td>4-3</td>
+            <td>4-4</td>
+        </tr>
+    </table>
+    <h1>Заголовок h1</h1>
+    <p>Некоторый текст в элементе p</p>
+    <h3>Заголовок h3</h3>
+    <ul>
+    <li>Список: пункт 1</li>
+    <li>Список: пункт 2</li>
+    <li>Список: пункт 3</li>
+    </ul>
+    <div>John Resig</div>
+    <div>George Martin</div>
+    <div>Malcom John Sinclair</div>
+    <div>J. Ohn</div>
+    <div>b byJohns a</div>
+
+    <table class="tab_1" style="width:200px;border:1px solid #000;">
+        <tr><td>1-1</td><td><span></span></td></tr>
+        <tr><td>2-1</td><td></td></tr>
+        <tr><td></td><td>3-2</td></tr>
+        <tr><td></td><td>4-2</td></tr>
+        </table>
+        <div><p>Текст внутри p, который внутри div</p></div>
+        <div>Это просто текст внутри div</div>
+        <table class="tab_2" style="width:200px;border:1px solid #000;">
+            <tr><td>1-1</td><td><span></span></td></tr>
+            <tr><td>2-1</td><td></td></tr>
+            <tr><td></td><td>3-2</td></tr>
+            <tr><td></td><td>4-2</td></tr>
+            </table>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /* выбрать элементы, располагающиеся на одном уровне
+        (сестринские элементы по отношению друг к другу), следующие непосредст-
+        венно за известным элементом, который располагается на том же уровне*/
+
+        $(function () {
+            console.log($("label ~ fieldset"));
+            $("label ~ fieldset").css("border", "dotted 2px brown");
+        })
+        $(function () {
+            $(".div_3 ~ div.block").css("border", "2px solid red");
+        })
+        /* установить серый цвет фона только для первой строки в таб-
+        лице.*/
+        $(function () {
+            $(".tab_0 tr:first").css("background", "grey");
+        })
+
+        /*установить серый цвет фона только для последней строки в таб-
+        лице.*/
+        $(function () {
+            $(".tab_0 tr:last").css("background", "green");
+        })
+        /* установить серый цвет фона только для четных строк в таблице.*/
+
+        $(function () {
+            $(".tab_0 tr:even").css("background", "blue");
+        })
+        /*установить серый цвет фона только для нечетных строк в таб-
+        лице.*/
+        $(function () {
+            $(".tab_0 tr:odd").css("color", "red");
+        })
+        /* отыскать шестую по счету ячейку таблицы.*/
+        $(function () {
+            $(".tab_0 td:eq(5)").css("background", "black");
+        })
+        /* отыскать все ячейки таблицы, которые следуют после шестой по
+        счету (иначе говоря — с индексом, более пяти).*/
+        $(function () {
+            $(".tab_0 td:gt(5)").css("background", "#abc");
+        })
+        /* отыскать все ячейки таблицы, которые следуют перед шестой по
+        счету (иначе говоря — с индексом, менее пяти).*/
+        $(function () {
+            $(".tab_0 td:lt(5)").css("background", "#cba");
+        })
+        /* отыскать на веб-странице все элементы, являющиеся заголовка-
+ми, например, h1, h2, h3 и т. д.*/
+$(function(){
+    $(":header").css("background-color", "#ccc");
+})
+/*отыскать все элементы, внутри которых находится текст, содер-
+жащий подстроку 'John'.*/
+
+$(function(){
+    $("div:contains('John')").css("text-decoration","underline");
+})
+/*необходимо отыскать только те ячейки, которые не содержат эле-
+ментов-потомков, включая и текст.*/
+$(function(){
+    $(".tab_1 td:empty").css("background-color", "rgb(255,204,153)");
+})
+/*необходимо отыскать все элементы div, внутри которых на-
+ходится как минимум один элемент p.*/
+$(function(){
+    $("div:has(p)").addClass("test");
+})
+/* необходимо отыскать только те ячейки, которые содержат элемен-
+ты-потомки, включая и текст.*/
+$(function(){
+    $(".tab_2 td:parent").fadeTo(3000, 0.3);
+})
+
+    </script>
+</body>
+
+</html>

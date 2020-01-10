@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор элементов часть 3</title>
+    <style>
+        section {
+            display: flex;
+            border-bottom: 1px solid grey;
+        }
+
+        .sec_1 div {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            border: 4px outset #00f;
+            float: left;
+        }
+
+        .sec_1 .starthidden {
+            display: none;
+        }
+
+        .sec_2 div {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #00f;
+            float: left;
+        }
+
+        .sec_3 form {
+            width: 450px;
+        }
+
+        .sec_3 input {
+            margin-left: 75px;
+        }
+
+        .sec_3 label {
+            float: right;
+        }
+
+        .sec_4 form {
+            width: 300px;
+        }
+
+        .sec_4 input {
+            float: right;
+            margin-bottom: 2px;
+        }
+
+        .sec_4 br {
+            clear: right;
+        }
+
+        .sec_5 form {
+            width: 100px;
+        }
+
+        .sec_5 input {
+            float: right;
+            margin-bottom: 2px;
+        }
+
+        .sec_5 br {
+            clear: right;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec_1">
+        <div></div>
+        <div class="starthidden"></div>
+        <div></div>
+        <div></div>
+        <div style="display:none;"></div>
+        <form>
+            <input type="hidden" />
+            <input type="text" />
+            <input type="hidden" />
+        </form>
+    </section>
+    <section class="sec_2">
+        <div>Элемент div без атрибута id, но с class="example"</div>
+        <div id="test">Элемент div с атрибутом id="test"</div>
+        <div id="pretest" class="example">Элемент div с атрибутами id="pretest" и
+            class="example"</div>
+        <div>Элемент div без атрибута id</div>
+        <div id="testend">Элемент div с атрибутом id="testend"</div>
+        <div id="sometestvalue">Элемент div с атрибутом id="sometestvalue"</div>
+        <div>Элемент div без атрибута id</div>
+        <div id="somevalue">Элемент div с атрибутом id="somevalue"</div>
+    </section>
+    <section class="sec_3">
+        <form>
+            <label>элемент type="checkbox"</label> <input type="checkbox" /><br />
+            <label>элемент type="file"</label> <input type="file" /><br />
+            <label>элемент type="image"</label> <input type="image" /><br />
+            <label>элемент type="password"</label> <input type="password" /><br />
+            <label>элемент type="radio"</label> <input type="radio" /><br />
+            <label>элемент type="reset"</label> <input type="reset" /><br />
+            <label>элемент type="submit"</label> <input type="submit" /><br />
+            <label>элемент type="text"</label> <input type="text" /><br />
+            <label>элемент type="button"</label> <input type="button" value="Button" />
+        </form>
+    </section>
+    <section class="sec_4">
+        <form>
+            <input type="text" /><label>Имя</label><br />
+            <input type="text" /><label>Фамилия</label><br />
+            <input type="text" disabled="disabled" /><label>Серия
+                паспорта</label><br />
+            <input type="text" disabled="disabled" /><label>Номер
+                паспорта</label><br />
+            <input type="text" /><label>E-mail адрес</label><br />
+        </form>
+    </section>
+    <section class="sec_5">
+        <form>
+            <div></div>
+            <hr />
+            <input type="checkbox" /><label>Секунда</label><br />
+            <input type="checkbox" /><label>Минута</label><br />
+            <input type="checkbox" /><label>Час</label><br />
+            <input type="checkbox" /><label>День</label><br />
+            <input type="checkbox" /><label>Неделя</label><br />
+            <input type="checkbox" checked="checked" /><label>Месяц</label><br />
+            <input type="checkbox" checked="checked" /><label>Год</label><br />
+        </form>
+    </section>
+    <section class="sec_6">
+        <select name="colors" multiple="multiple">
+            <option>Красный</option>
+            <option selected="selected">Оранжевый</option>
+            <option>Желтый</option>
+            <option selected="selected">Зеленый</option>
+            <option>Голубой</option>
+            <option>Синий</option>
+            <option>Фиолетовый</option>
+            </select>
+            <div></div>
+    </section>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /* подсчитать число видимых и невидимых эле-
+ментов и вывести эти значения */
+        console.log($(".sec_1 :visible", document.body));
+        console.log($(".sec_1 :hidden", document.body));
+        /*необходимо отыскать элементы div, у которых присутствует
+атрибут id.*/
+        console.log($(".sec_2 div[id]"));
+        /* необходимо отыскать элемент div, у которого атрибут id
+соответствует определенному значению*/
+        console.log($(".sec_2 div[id=somevalue]"));
+        /* отыскать элементы div, у которых атрибут id не
+        соответствует определенному значению.*/
+        console.log($(".sec_2 div[id!=somevalue]"));
+        /* необходимо отыскать элементы div, у которых значение
+        атрибута id начинается с определенной последовательности символов.*/
+        console.log($(".sec_2 div[id^=test]"));
+        /* отыскать элементы div, у которых значение
+        атрибута id заканчивается определенной последовательностью символов.*/
+        console.log($(".sec_2 div[id$=test]"));
+        /*необходимо отыскать элементы div, у которых значение
+        атрибута id содержит определенную последовательность символов*/
+        console.log($(".sec_2 div[id*=test]"));
+        /*отыскать элементы div, у которых значение ат-
+        рибута id содержит определенную последовательность символов и к тому же
+        присутствует атрибут class с заданным значением.*/
+        console.log($(".sec_2 div[id*=test][class=example]"));
+        /*найти все элементы input независимо от их
+        типа.*/
+        $(function () {
+            $(".sec_3 :input").prev("label").css("color", "#c33");
+        })
+        /*отыскать все элементы input, атрибут type ко-
+торых содержит значение text.*/
+        $(function () {
+            $(".sec_3 :text").prev("label").css("color", "green");
+        })
+        /*найти все элементы input, атрибут type которых
+        содержит значение password.
+        наряду с фильтрами :input, :text и :password, существуют еще :radio,
+        :checkbox, :submit, :image, :reset, :button и :file.*/
+        $(function () {
+            $(".sec_3 :password").prev("label").css("color", "blue");
+        })
+        /*существует форма, в которой необходимо отыскать все поля,
+        доступные для заполнения, и отметить их. То же самое необходимо сделать
+        с теми полями, которые для заполнения недоступны.*/
+        $(function () {
+            $(".sec_4 input:disabled").val("DISABLED");
+            $(".sec_4 input:enabled").val("ENABLED");
+        })
+        /*необходимо отслеживать состояние элементов checkbox*/
+$(function(){
+    function countChecked(){
+        var n = $(".sec_5 input:checked").length;
+        $(".sec_5 div").text("Отмечено - " + n);
+    }
+    countChecked();
+    $(":checkbox").click(countChecked);
+})
+/*есть выпадающий список с возможностью одновре-
+менного выбора нескольких опций. Необходимо отслеживать, какие именно
+опции были выбраны.*/
+$(function(){
+    $(".sec_6 select").change(function(){
+        var str = "";
+        $(".sec_6 option:selected").each(function(){
+            str+= $(this).text() + " ";
+        })
+        $(".sec_6 div").text(str);
+    }).trigger("change");
+})
+    </script>
+</body>
+
+</html>

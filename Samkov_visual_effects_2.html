@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Samkov_visual_effects_2</title>
+    <style>
+        .sec_1 div {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+
+        .sec_1 .result {
+            border-bottom: 1px dotted #369;
+        }
+
+        .sec_2 div {
+            position: absolute;
+            background-color: #369;
+            left: 100px;
+            width: 90px;
+            height: 90px;
+            margin: 5px;
+        }
+
+        .sec_2 {
+            min-height: 150px;
+        }
+
+        .sec_3 div {
+            width: 100px;
+            border: 1px solid #369;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec_1">
+        <p>Первый параграф — щелкните левой кнопкой мыши здесь.</p>
+        <p>Второй параграф — для сравнения.</p>
+    </section>
+    <section class="sec_2">
+        <button class="left">влево</button><button class="right">вправо</button>
+        <div class="block"></div>
+    </section>
+    <section class="sec_3">
+        <button class="go">Выполнить</button>
+        <button class="stop">Остановить</button>
+        <div class="block">Hello!</div>
+    </section>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /*При щелчке указателем мыши на каком-либо элементе необходимо плавно
+    изменить его прозрачность к заданному значению, и при его достижении вы-
+    звать функцию, которая выведет сообщение о завершении этого процесса*/
+        $(function () {
+            $(".sec_1 p:first").click(function () {
+                $(this).fadeTo("slow", 0.33, function () {/*slow — строка,
+определяющая продолжительность эффекта (возможны строковые значения
+slow, normal и fast или число миллисекунд*/
+                    alert("Done!");
+                });
+            });
+        });
+        /*анимацию для элемента div — при нажатии
+кнопок элемент должен сдвигаться влево или вправо на 50 пикселов.*/
+        $(function () {
+            $(".sec_2 .left").click(function () {
+                $(".sec_2 .block").animate({ "left": "-=50px" }, "slow");
+            });
+            $(".sec_2 .right").click(function () {
+                $(".sec_2 .block").animate({ "left": "+=50px" }, "slow");
+            });
+        });
+        /*При нажатии кнопки необходимо выполнить анимацию только одного эле-
+мента div, но в процессе анимации должны измениться значения многих его
+CSS-свойств и по завершении анимации необходимо выдать сообщение о ее
+окончании. В процессе выполнения анимации может появиться необходи-
+мость в ее остановке.*/
+        $(function () {
+            $(".sec_3 .go").click(function () {
+                $(".sec_3 .block").animate({
+                    width: "70%",
+                    opacity: 0.3,
+                    marginLeft: "5em",
+                    fontSize: "3em",
+                    borderWidth: "10px"
+                }, 2500, function () {
+                    alert("Done!");
+                });
+            });
+            $(".sec_3 .stop").click(function () {
+                $(".sec_3 .block").stop();
+            });
+        });
+    </script>
+</body>
+
+</html>

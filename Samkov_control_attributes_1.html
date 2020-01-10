@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Samkov_control_attributes_1</title>
+    <style>
+        section {
+            display: flex;
+            flex-direction: column;
+            height: max-content;
+            border-bottom: 1px solid grey;
+        }
+
+        .sec_4 p {
+            border: 1px dotted #ccc;
+        }
+
+        .sec_4 .test {
+            background-color: #369;
+            color: #fff;
+        }
+
+        .sec_6 .test {
+            border: 1px dotted #369;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec_1">
+        <a class="link" href="http://jquery.com" rel="nofollow">Официальный сайт
+            jQuery</a>
+    </section>
+    <section class="sec_2">
+        <a href="#">Официальный сайт библиотеки jQuery</a>
+    </section>
+    <section class="sec_3">
+        <p>Первый параграф</p>
+        <p>Второй параграф</p>
+        <p>Третий параграф</p>
+        <p>Четвертый параграф</p>
+    </section>
+    <section class="sec_3">
+        <a href="#">Разрешить редактирование</a>
+        <input type="text" disabled="disabled" value="Не редактируется" />
+    </section>
+    <section class="sec_4">
+        <p>Параграф №1</p>
+        <p>Параграф №2</p>
+        <p>Параграф №3</p>
+        <button id="add">Добавить класс</button>
+        <button id="remove">Удалить класс</button>
+        <button id="toggle">Переключить класс</button>
+        <button id="has">Проверить класс</button>
+    </section>
+    <section class="sec_5">
+        <div class="test">
+            <p>Я шел, спускаясь в темные коридоры, и потом опять поднимаясь наверх.
+                Я был один. Я кричал, мне не отвечали — я был один в этом обширном,
+                запутанном, как лабиринт, доме.</p>
+            <p><em>Ги де Мопассан</em></p>
+        </div>
+        <button>Получить как текст</button>
+        <button>Получить как HTML</button>
+    </section>
+    <section class="sec_6">
+        <div>
+            <p>Я шел, спускаясь в темные коридоры, и потом опять поднимаясь наверх.
+                Я был один. Я кричал, мне не отвечали — я был один в этом обширном,
+                запутанном, как лабиринт, доме.</p>
+            <p><em>Ги де Мопассан</em></p>
+        </div>
+        <button>Получить и вставить как текст</button>
+        <button>Получить и вставить как HTML</button>
+        <div class="test">В этот div будет вставлен текст или html</div>
+    </section>
+    <!-- Script -->
+
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /*получить значение атрибута href элемента a и установить его
+    в качестве значения атрибута title.*/
+        $(function () {
+            var href = $(".sec_1 a").attr("href");
+            $(".sec_1 a").attr("title", href);
+        })
+        /* необходимо установить значения атрибутов alt, title и href,
+    которые отсутствуют в HTML-разметке.*/
+        $(function () {
+            $(".sec_2 a").attr({
+                alt: "Официальный сайт jQuery", title: "jQuery.com",
+                href: "http://jquery.com"
+            }).click(function () {
+                alert($(this).attr("alt"));
+                return false;
+            })
+        })
+        /*Для всех элементов p, обнаруженных на веб-странице, необходимо устано-
+        вить значение атрибута name, вычисленное на основании положения элемента*/
+        $(function () {
+            $(".sec_3 p").attr("name", function (n) {/*n - индекс элемента в наборе, с 0*/
+                return "pName " + n;
+            }).click(function () {
+                alert("name = " + $(this).attr("name"));
+            })
+        })
+        /* разрешить редактирование элемента input, которое было запре-
+                щено с помощью присвоения значения disabled атрибуту disabled.*/
+        $(function () {
+            $(".sec_3 a").click(function () {
+                $(this).next().removeAttr("disabled").focus().val("Редактируется");
+            })
+        })
+        /*Необходимо добавлять, удалять и переключать классы, а
+                также выполнять какие-либо действия в зависимости от того, присутствует
+                ли у элемента определенный класс.*/
+        $(function () {
+            $("#add").click(function () {
+                $(".sec_4 p").addClass("test");
+            })
+            $("#remove").click(function () {
+                $(".sec_4 p").removeClass("test");
+            })
+            $("#toggle").click(function () {
+                $(".sec_4 p").toggleClass("test");
+            })
+            $("#has").click(function () {
+                alert($(".sec_4 p:first").hasClass("test"));
+            })
+        })
+        /*получить внутреннее содержимое какого-либо элемента в виде
+        HTML-кода или текста.*/
+        $(function () {
+            $(".sec_5 button:first").click(function () {
+                console.log($(".sec_5 .test").text());
+            })
+            $(".sec_5 button:last").click(function () {
+                console.log($(".sec_5 .test").html());
+            })
+        })
+        /*В выбранный элемент необходимо вставить либо текст, либо HTML-код.*/
+        $(function () {
+            $(".sec_6 button:first").click(function () {
+                var text = $(".sec_6 div:first").text();
+                $(".sec_6 div.test").text(text);
+            })
+            $(".sec_6 button:last").click(function () {
+                var code = $(".sec_6 div:first").html();
+                $(".sec_6 div.test").html(code);
+            })
+        })
+    </script>
+</body>
+
+</html>

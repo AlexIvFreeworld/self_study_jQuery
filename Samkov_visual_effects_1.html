@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Samkov_visual_effects_1</title>
+    <style>
+        .sec_1 div {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+
+        .sec_2 div {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+
+        .sec_2 .result {
+            border-bottom: 1px dotted #369;
+        }
+
+        .sec_3 div {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+
+        .sec_3 .result {
+            border-bottom: 1px dotted #369;
+        }
+
+        .sec_4 div {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+
+        .sec_4 .result {
+            border-bottom: 1px dotted #369;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec_1">
+        <button>Hide</button><button>Show</button><button>Toggle</button>
+        <div class="test">
+            <p>Я шел, спускаясь в темные коридоры, и потом опять поднимаясь наверх.
+                Я был один. Я кричал, мне не отвечали — я был один в этом обширном,
+                запутанном, как лабиринт, доме.</p>
+            <p><em>Ги де Мопассан</em></p>
+        </div>
+    </section>
+    <section class="sec_2">
+        <p class="result">&nbsp;</p>
+        <button>Hide</button><button>Show</button><button>Toggle</button>
+        <div class="test">
+            <p>Я шел, спускаясь в темные коридоры, и потом опять поднимаясь наверх.
+                Я был один. Я кричал, мне не отвечали — я был один в этом обширном,
+                запутанном, как лабиринт, доме.</p>
+            Глава 3. Визуальные эффекты 67
+            <p><em>Ги де Мопассан</em></p>
+        </div>
+    </section>
+    <section class="sec_3">
+        <p class="result">&nbsp;</p>
+        <button>Hide</button><button>Show</button><button>Toggle</button>
+        <div class="test">
+            <p>Я шел, спускаясь в темные коридоры, и потом опять поднимаясь наверх.
+                Я был один. Я кричал, мне не отвечали — я был один в этом обширном,
+                запутанном, как лабиринт, доме.</p>
+            <p><em>Ги де Мопассан</em></p>
+        </div>
+    </section>
+    <section class="sec_4">
+        <p class="result">&nbsp;</p>
+        <button>Hide</button><button>Show</button>
+        <div class="test">
+            70 Часть I. Методы библиотеки jQuery
+            <p>Я шел, спускаясь в темные коридоры, и потом опять поднимаясь наверх.
+                Я был один. Я кричал, мне не отвечали — я был один в этом обширном,
+                запутанном, как лабиринт, доме.</p>
+            <p><em>Ги де Мопассан</em></p>
+        </div>
+    </section>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /*Необходимо скрывать, показывать или переключать состояние видимо-
+    сти/невидимости для какого-либо элемента.*/
+        $(function () {
+            $(".sec_1 button:eq(0)").click(function () {
+                $(".sec_1 .test").hide();
+            });
+            $(".sec_1 button:eq(1)").click(function () {
+                $(".sec_1 .test").show();
+            });
+            $(".sec_1 button:eq(2)").click(function () {
+                $(".sec_1 .test").toggle();
+            });
+        });
+        /*Необходимо не только скрывать, показывать или переключать состояние ви-
+димости/невидимости элемента, но и делать это в течение какого-то, заранее
+66 Часть I. Методы библиотеки jQuery
+заданного времени. Кроме того, по истечении этого времени, помимо того,
+что элемент должен быть скрыт/показан, должна быть вызвана какая-либо
+функция.*/
+        $(function () {
+            $(".sec_2 button:eq(0)").click(function () {
+                $(".sec_2 .test").hide(1000, function () {
+                    $(".sec_2 p:first").text("hide");
+                });
+            });
+            $(".sec_2 button:eq(1)").click(function () {
+                $(".sec_2 .test").show(2000, function () {
+                    $(".sec_2 p:first").text("show");
+                });
+            });
+            $(".sec_2 button:eq(2)").click(function () {
+                $(".sec_2 .test").toggle(800, function () {
+                    $(".sec_2 p:first").text("toggle");
+                });
+            });
+
+        });
+        /*Необходимо скрывать или показывать элементы с использованием эффекта
+"скольжения".*/
+        $(function () {
+            $(".sec_3 button:eq(0)").click(function () {
+                $(".sec_3 .test").slideUp(1000, function () {
+                    $(".sec_3 p:first").text("slideUp");
+                });
+            });
+            $(".sec_3 button:eq(1)").click(function () {
+                $(".sec_3 .test").slideDown(2000, function () {
+                    $(".sec_3 p:first").text("slideDown");
+                });
+            });
+            $(".sec_3 button:eq(2)").click(function () {
+                $(".sec_3 .test").slideToggle(800, function () {
+                    $(".sec_3 p:first").text("slideToggle");
+                });
+            });
+
+        });
+        /*Необходимо скрывать и показывать элементы с использованием эффекта "за-
+тухания".*/
+        $(function () {
+            $(".sec_4 button:eq(0)").click(function () {
+                $(".sec_4 .test").fadeOut(1000, function () {
+                    $(".sec_4 p:first").text("fadeOut");
+                });
+            });
+            $(".sec_4 button:eq(1)").click(function () {
+                $(".sec_4 .test").fadeIn(2000, function () {
+                    $(".sec_4 p:first").text("fadeIn");
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

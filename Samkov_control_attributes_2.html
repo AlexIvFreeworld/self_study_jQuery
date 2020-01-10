@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Samkov_control_attributes_2</title>
+    <style>
+        .sec_1 p {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+
+        .sec_3 p {
+            border: 1px dotted #369;
+            padding: 5px;
+            color: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec_1">
+        <input type="text" value="какой-то текст" />
+        <p></p>
+    </section>
+    <section class="sec_2">
+        <div>
+            <button>Один</button>
+            <button>Два</button>
+            <button>Три</button>
+        </div>
+        <input type="text" value="Нажимайте кнопки" />
+    </section>
+    <section class="sec_3">
+        <p></p>
+        <select class="single">
+            <option value="s1">Single1</option>
+            <option value="s2">Single2</option>
+            <option value="s3">Single3</option>
+            <option value="s4">Single4</option>
+            <option value="s5">Single5</option>
+        </select>
+        <br>
+        <br>
+        <select class="multiple" multiple="multiple">
+            <option value="m1" selected="selected">Multiple1</option>
+            <option value="m2">Multiple2</option>
+            <option value="m3" selected="selected">Multiple3</option>
+            <option value="m4">Multiple4</option>
+            <option value="m5">Multiple5</option>
+        </select><br />
+        <br>
+        <input type="checkbox" name="c" value="check" checked="checked" /><label>check</label><br />
+        <input type="radio" name="r" value="radio1" /><label>radio1</label>
+        <input type="radio" name="r" value="radio2" /><label>radio2</label>
+        <input type="radio" name="r" value="radio3" checked="checked" /><label>radio3</label>
+        <hr />
+        <button class="getSingle">select #single</button>
+        <button class="getMultiple">select #multiple</button>
+        <button class="getCheckbox">checkbox</button>
+        <button class="getRadio">radio</button>
+    </section>
+<section class="sec_4">
+    <select class="single">
+        <option>Single1</option>
+        <option>Single2</option>
+        <option>Single3</option>
+        <option>Single4</option>
+        <option>Single5</option>
+        </select>
+        <br>
+        <br>
+        <select class="multiple" multiple="multiple">
+        <option selected="selected">Multiple1</option>
+        <option>Multiple2</option>
+        <option selected="selected">Multiple3</option>
+        <option>Multiple4</option>
+        <option>Multiple5</option>
+        </select><br />
+        <input type="checkbox" name="c" value="check" /><label>check</label><br />
+        <input type="radio" name="r" value="radio1" /><label>radio1</label>
+        <input type="radio" name="r" value="radio2" /><label>radio2</label>
+        <input type="radio" name="r" value="radio3" /><label>radio3</label>
+</section>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /*По мере набора текста в поле ввода (элемент input) необходимо получать
+        введенное значение и отображать его в другом элементе, например p*/
+        $(function () {
+            $(".sec_1 input").keyup(function () {
+                var value = $(this).val();
+                $(".sec_1 p").text(value);
+            }).keyup(); /*последний keyup() чтобы вставить значение
+атрибута value элемента input в элемент p при загрузке страницы.*/
+        });
+        /*Необходимо изменить значение атрибута value элемента input типа text.*/
+        $(function () {
+            $(".sec_2 button").click(function () {
+                var text = $(this).text();
+                $(".sec_2 input").val(text);
+            });
+        });
+        /*Необходимо получить значения атрибутов value элементов radio, checkbox и
+                select.*/
+        $(function () {
+            $(".sec_3 .getSingle").click(function () {
+                var single = $(".sec_3 .single option:selected").val();
+                $(".sec_3 p").empty().text(single);
+            });
+            $(".sec_3 .getMultiple").click(function () {
+                var multiple = $(".sec_3 .multiple").val();
+                $(".sec_3 p").empty().text(multiple.join(", "));
+            });
+            $(".sec_3 .getCheckbox").click(function () {
+                var checkbox= $(".sec_3 input:checkbox:checked").val();
+                $(".sec_3 p").empty().text(checkbox);
+            });
+            $(".sec_3 .getRadio").click(function () {
+                var radio = $(".sec_3 input:radio[name=r]:checked").val();
+                $(".sec_3 p").empty().text(radio);
+            });
+        });
+        /*При загрузке веб-страницы необходимо установить начальные значения эле-
+ментов select, checkbox и radio.*/
+$(function(){
+$(".sec_4 .single").val("Single5");
+$(".sec_4 .multiple").val(["Multiple2", "Multiple4", "Multiple5"]); /*передается массив
+значений*/
+$(".sec_4 input").val(["check", "radio3"]); /*передается массив
+значений*/
+});
+    </script>
+</body>
+
+</html>

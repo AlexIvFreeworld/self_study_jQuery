@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор элементов часть 1</title>
+    <style>
+        div {
+            width: 150px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <p></p>
+    <div><span></span></div>
+    <div class="myDiv"></div>
+    <div></div>
+    <div id="myDiv"></div>
+    <div><span></span></div>
+    <div id="otherDiv"></div>
+    <div></div>
+    <div id="my.Div"></div>
+    <div><span></span></div>
+    <div id="my[Div]"></div>
+    <div>div</div>
+    <p class="test">p class="test"</p>
+    <ul class="test">
+        <li>li списка ul class="test"</li>
+        <li>li списка ul class="test"</li>
+    </ul>
+    <p>p</p>
+    <div class="test">div class="test"</div>
+    <div class="oneTest">div class="oneTest"</div>
+    <div class="twoTest">div class="twoTest"</div>
+    <div class="oneTest twoTest">div class="oneTest twoTest"</div>
+    <form>
+        <div>Форма заключена в зеленую рамку</div>
+        <label>Ребенок:</label>
+        <input type="text" name="name" />
+        <fieldset>
+            <label>Внук:</label>
+            <input type="text" name="newsletter" />
+        </fieldset>
+    </form>
+    Сестринский элемент по отношению к форме:
+    <input type="text" name="none" />
+
+
+
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /* Выбор всех объектов на странице и подсчет количества*/
+        $(function () {
+            console.log($("*").length);
+        })
+        /* Выбор всех объектов на странице */
+        $(function () {
+            console.log($("*"));
+        })
+        /* Выбор объектов body и подсчет количества*/
+        $(function () {
+            console.log($("*", document.body).length);
+        })
+        /* Выбор объектов body*/
+        $(function () {
+            console.log($("*", document.body));
+        })
+        /* Выбираем элемент по id и задаем css свойство */
+        $(function () {
+            $("#myDiv").css("border", "1px solid #f00");
+        })
+        /* выбор элемент по значению атрибута id, в который входят
+        специфические символы, такие как точка или квадратные скобки */
+        $(function () {
+            $("#my\\.Div").css("border", "1px solid #F00");
+            $("#my\\[Div\\]").css("border", "1px solid #0f0");
+        })
+        /* выбор всех элементов определенного типа, например, все эле-
+        менты div*/
+        $(function () {
+            console.log($("div"));
+            $("div").css("background", "grey");
+        })
+        /* выбор элементов по имени класса */
+        $(function () {
+            console.log($(".test"));
+        })
+
+        /* выбор элементов, которые имеют сразу несколько имен класов */
+
+        $(function () {
+            console.log($(".oneTest.twoTest"));
+        })
+
+        /*элементы, являющиеся потомками какого-либо эле-
+        мента.*/
+        $(function () {
+            console.log($("form input"));
+            $("form input").css("border", "2px dotted brown");
+        })
+        /* элементы, являющиеся прямыми потомками какого-
+        либо элемента. */
+        $(function () {
+            console.log($("form > input"));
+        })
+        /* элементы, следующие непосредственно за известным
+        элементом. */
+        $(function () {
+            console.log($("label + input"));
+        })
+
+    </script>
+</body>
+
+</html>
