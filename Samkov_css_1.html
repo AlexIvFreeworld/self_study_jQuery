@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Samkov_css_1</title>
+    <style>
+        section {
+            display: block;
+            height: 80px;
+            border-bottom: 1px solid grey;
+        }
+
+        .sec_2 {
+            height: 170px;
+        }
+
+        .sec_1 div {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            float: left;
+        }
+
+        .sec_2 div {
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+            float: left;
+            border: 1px solid #369;
+        }
+
+        .sec_3 a {
+            color: #000;
+            background-color: #eee;
+        }
+
+        .sec_4 div {
+            width: 120px;
+            height: 110px;
+            margin: 15px;
+            padding: 10px;
+            border: 1px dotted #f00;
+            overflow: hidden;
+        }
+
+        .sec_4 button {
+            width: 170px;
+        }
+
+        .sec_4 {
+            height: 250px;
+        }
+
+        .sec_5 .main {
+            position: relative;
+            top: 20px;
+            left: 40px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #f00;
+            padding: 10px;
+        }
+
+        .sec_5 .inner {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            float: left;
+            border: 1px solid #369;
+        }
+
+        .sec_5 br {
+            clear: left;
+        }
+
+        .sec_5 p {
+            margin-left: 40px;
+        }
+
+        .sec_5 {
+            height: 330px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="sec_1">
+        <span class="result">&nbsp;</span>
+        <div style="background-color:blue;"></div>
+        <div style="background-color:rgb(15,99,30);"></div>
+        <div style="background-color:#123456;"></div>
+        <div style="background-color:#f11;"></div>
+    </section>
+    <section class="sec_2">
+        <input type="text" />
+        <button>Применить</button>
+        <div></div>
+    </section>
+    <section class="sec_3">
+        <a href="http://jquery.com/">Библиотека jQuery</a><br />
+        <a href="http://jqueryui.com/">UI jQuery</a><br />
+        <a href="http://blog.jqueryui.com/">Блог UI jQuery</a>
+    </section>
+    <section class="sec_4">
+        <button>Получить width</button>
+        <button>Получить height</button>
+        <button>Получить innerWidth</button>
+        <button>Получить innerHeight</button>
+        <button>Получить outerWidth</button>
+        <button>Получить outerHeight</button>
+        <br /><br />
+        <input type="text" />
+        <button>Установить width</button>
+        <button>Установить height</button>
+        <div>Элемент div</div>
+    </section>
+    <section class="sec_5">
+        <div class="main">
+            <div class="inner"></div>
+            <div class="inner"></div>
+            <br />
+            <div class="inner"></div>
+            <div class="inner"></div>
+        </div>
+        <br />
+        <p>Offset — <span>left: ?px, top: ?px</span></p>
+        <p>Position — <span>left: ?px, top: ?px</span></p>
+    </section>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        /*решить задачу получения цвета фона какого-либо элемента,
+    иными словами, значение CSS-свойства background-color.*/
+        $(function () {
+            $(".sec_1 div").click(function () {
+                var color = $(this).css("background-color");
+                $(".sec_1 .result").text("Background-color = " + color);
+            });
+        });
+        /* установить цвет фона какого-либо элемента.*/
+        $(function () {
+            $(".sec_2 button").click(function () {
+                var color = $(".sec_2 input").val();
+                $(".sec_2 div").css("background-color", color);
+            });
+        });
+        /*установить одновременно некоторые CSS-свойства кого-либо
+                элемента, например, изменить визуальное представление элемента a в момент
+                наведения на него указателя мыши.*/
+        $(function () {
+            $(".sec_3 a").hover(function () {/*аргуметны две функции over, out */
+                $(this).css({
+                    "background-color": "#999",
+                    "color": "#fff",
+                    "font-weight": "bold"
+                });
+            },
+                function () {
+                    $(this).css({
+                        "background-color": "#eee",
+                        "color": "#000",
+                        "font-weight": "normal"
+                    });
+                });
+        });
+        /*Необходимо получать и устанавливать размеры выбранных
+элементов.*/
+        $(function () {
+            $(".sec_4 button:eq(0)").click(function () {
+                $(".sec_4 input").val($(".sec_4 div").width());
+            });
+            $(".sec_4 button:eq(1)").click(function () {
+                $(".sec_4 input").val($(".sec_4 div").height());
+            });
+            $(".sec_4 button:eq(2)").click(function () {
+                $(".sec_4 input").val($(".sec_4 div").innerWidth());
+            });
+            $(".sec_4 button:eq(3)").click(function () {
+                $(".sec_4 input").val($(".sec_4 div").innerHeight());
+            });
+            $(".sec_4 button:eq(4)").click(function () {
+                $(".sec_4 input").val($(".sec_4 div").outerWidth(true));
+            });
+            $(".sec_4 button:eq(5)").click(function () {
+                $(".sec_4 input").val($(".sec_4 div").outerHeight());
+            });
+            $(".sec_4 button:eq(6)").click(function () {
+                $(".sec_4 div").width($(".sec_4 input").val() * 1);
+            });
+            $(".sec_4 button:eq(7)").click(function () {
+                $(".sec_4 div").height($(".sec_4 input").val() * 1);
+            });
+        });
+        /*получить значения CSS-свойств top и left для выбранного эле-
+                мента, причем относительно как документа, так и элемента-родителя.*/
+        $(function () {
+            $(".sec_5 div.inner").click(function () {
+                var o = $(this).offset();
+                $(".sec_5 p:first span").text("left: " + o.left + "px top: " + o.top + "px");
+                var p = $(this).position();
+                $(".sec_5 p:last span").text("left: " + p.left + "px top: " + p.top + "px");
+            });
+        });
+
+    </script>
+</body>
+
+</html>

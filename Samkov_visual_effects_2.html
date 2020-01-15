@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Samkov_visual_effects_2</title>
     <style>
+        section {
+            border-bottom: 1px solid grey;
+        }
+
         .sec_1 div {
             border: 1px dotted #369;
             padding: 5px;
@@ -26,14 +30,52 @@
             margin: 5px;
         }
 
-        .sec_2 {
+        .sec_2,
+        .sec_4 {
+            position: relative;
             min-height: 150px;
+        }
+
+        .sec_5,
+        .sec_6 {
+            position: relative;
+            min-height: 250px;
         }
 
         .sec_3 div {
             width: 100px;
             border: 1px solid #369;
             padding: 5px;
+        }
+
+        .sec_4 div {
+            position: absolute;
+            background-color: #69c;
+            left: 100px;
+            width: 90px;
+            height: 90px;
+            margin: 5px;
+            border: 1px solid #369;
+        }
+
+        .sec_5 div {
+            position: absolute;
+            top: 20px;
+            left: 200px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #369;
+            background-color: #69c;
+        }
+
+        .sec_6 div {
+            position: absolute;
+            top: 20px;
+            left: 200px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #369;
+            background-color: #69c;
         }
     </style>
 </head>
@@ -52,7 +94,18 @@
         <button class="stop">Остановить</button>
         <div class="block">Hello!</div>
     </section>
+    <section class="sec_4">
+        <button class="go">Выполнить</button>
+        <div class="block"></div>
+    </section>
+    <section class="sec_5">
+        <div></div>
+    </section>
+    <section class="sec_6">
+        <div></div>
+    </section>
     <script src="jquery-3.4.1.min.js"></script>
+    <script src="jquery-ui.js"></script>
     <script>
         /*При щелчке указателем мыши на каком-либо элементе необходимо плавно
     изменить его прозрачность к заданному значению, и при его достижении вы-
@@ -97,6 +150,41 @@ CSS-свойств и по завершении анимации необход�
                 $(".sec_3 .block").stop();
             });
         });
+        /*построить относительно сложную анимацию, где некоторые
+свойства элемента будут меняться одновременно с другими, а некоторые —
+в порядке очереди.*/
+        $(function () {
+            $(".sec_4 .go").click(function () {
+                $(".sec_4 div.block").animate({ width: "300px" }, { queue: false, duration: 3000 })
+                    /*опция queue:false исключила эффект из общей очереди, идет параллельно*/
+                    .animate({ height: "400px" }, 1500)
+                    .animate({ borderWidth: "15px" }, 1500);
+            });
+        });
+        /* Нужны более разнообразные эффекты.
+                Таких эффектов всего 14, причем восемь из
+                них (blind, clip, drop, explode, fold, puff, slide и scale) могут быть исполь-
+                зованы (но не обязательно) вместе с методами show(), hide() и toggle(),
+                а шесть остальных (bounce, highlight, pulsate, shake, size и transfer) дейст-
+                вуют сами по себе.
+                */
+        $(function () { /* не работает как надо, просто исчезает*/
+            $(".sec_5 div").click(function () {
+                $(this).hide("explode", { pieces: 4 }, 1200, function () {
+                    alert("Done!");
+                });
+            });
+        });
+/*самостоятельный эффект bounce*/
+        $(function () { /* не работает как надо, просто исчезает*/
+            $(".sec_6 div").click(function () {
+                $(this).effect("bounce", { times: 7, distance:50,
+                direction:"right"}, 300, function () {
+                    alert("Done!");
+                });
+            });
+        });
+
     </script>
 </body>
 
